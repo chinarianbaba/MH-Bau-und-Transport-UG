@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MH Bau und Transport UG offers professional demolition, relocation, and cleaning services in Berlin.">
+    <meta name="keywords" content="demolition, relocation, cleaning, Berlin, MH Bau">
+    <meta property="og:title" content="MH Bau und Transport UG">
+    <meta property="og:description" content="Professional construction, transport, and cleaning services in Berlin.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80">
+    <title>MH Bau und Transport UG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #ecf0f1;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #1e272e, #485460);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .navbar .nav-icons {
+            display: flex;
+            gap: 30px;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .navbar .nav-icons i {
+            font-size: 24px;
+            cursor: pointer;
+            color: #ecf0f1;
+            transition: transform 0.3s, color 0.3s;
+        }
+        .navbar .nav-icons i:hover {
+            color: #f1c40f;
+            transform: scale(1.1) translateY(-3px);
+        }
+        .navbar .language-switcher select {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #ecf0f1;
+            color: #1e272e;
+            border: none;
+        }
+        .content {
+            margin-top: 80px;
+            padding: 20px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 60px;
+        }
+        .section {
+            display: none;
+            background: linear-gradient(145deg, #ffffff, #dfe6e9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.7s ease-in-out;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .home-section,
+        .bau-section,
+        .transport-section,
+        .cleaning-section,
+        .about-section,
+        .legal-section {
+            position: relative;
+            background-attachment: fixed;
+            padding: 40px 20px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+        }
+        .home-section {
+            background: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+        }
+        .bau-section {
+            background: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+        }
+        .transport-section {
+            background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+        }
+        .cleaning-section {
+            background: url('https://images.unsplash.com/photo-1581578735769-4a7d03d23e7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+        }
+        .about-section {
+            background: url('https://images.unsplash.com/photo-14973662105479-4275897d4737?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+        }
+        .legal-section {
+            background: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+        }
+        .home-section::before,
+        .bau-section::before,
+        .transport-section::before,
+        .cleaning-section::before,
+        .about-section::before,
+        .legal-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(30, 39, 46, 0.8), rgba(30, 39, 46, 0.6));
+            border-radius: 10px;
+            z-index: 1;
+        }
+        .home-section > *,
+        .bau-section > *,
+        .transport-section > *,
+        .cleaning-section > *,
+        .about-section > *,
+        .legal-section > * {
+            position: relative;
+            z-index: 2;
+        }
+        .section h1 {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #f1c40f, #ffffff);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #1e272e;
+        }
+        .section h2 a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .section h2 a:hover {
+            color: #f1c40f;
+        }
+        .bau-section h2 a,
+        .transport-section h2 a,
+        .cleaning-section h2 a,
+        .about-section h2 a,
+        .legal-section h2 a {
+            color: #ecf0f1;
+        }
+        .section h3 {
+            font-size: 20px;
+            margin: 15px 0 10px;
+            color: #1e272e;
+        }
+        .about-section h3,
+        .legal-section h3 {
+            color: #ecf0f1;
+        }
+        .section p, .section li {
+            line-height: 1.8;
+            color: #2d3436;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .home-section p,
+        .bau-section p,
+        .bau-section li,
+        .transport-section p,
+        .cleaning-section p,
+        .about-section p,
+        .legal-section p,
+        .legal-section li {
+            color: #ecf0f1;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        .home-section {
+            padding: 60px 20px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #f1c40f;
+            color: #1e272e;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(241, 196, 15, 0.5);
+        }
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .contact-item i {
+            font-size: 24px;
+            color: #f1c40f;
+        }
+        .contact-item p,
+        .contact-item a {
+            font-size: 16px;
+            color: #1e272e;
+        }
+        .contact-item a {
+            text-decoration: none;
+        }
+        .contact-item a:hover {
+            color: #f1c40f;
+        }
+        .appointment-form,
+        .transport-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 100%;
+        }
+        .appointment-form input,
+        .appointment-form textarea,
+        .appointment-form button,
+        .transport-form input:not([type="file"]),
+        .transport-form textarea,
+        .transport-form select,
+        .transport-form button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #b2bec3;
+            border-radius: 6px;
+            width: 100%;
+        }
+        .appointment-form textarea,
+        .transport-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .appointment-form input:focus,
+        .appointment-form textarea:focus,
+        .transport-form input:focus,
+        .transport-form textarea:focus,
+        .transport-form select:focus {
+            border-color: #f1c40f;
+            box-shadow: 0 0 6px rgba(241, 196, 15, 0.3);
+            outline: none;
+        }
+        .appointment-form button,
+        .transport-form button {
+            background: #1e272e;
+            color: white;
+            cursor: pointer;
+            border: none;
+            position: relative;
+        }
+        .appointment-form button:hover,
+        .transport-form button:hover {
+            background: #f1c40f;
+            color: #1e272e;
+        }
+        .appointment-form button:disabled,
+        .transport-form button:disabled {
+            background: #b2bec3;
+            cursor: not-allowed;
+        }
+        .appointment-form .loading::after,
+        .transport-form .loading::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #fff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        @keyframes spin {
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+        .appointment-form .error-message,
+        .transport-form .error-message {
+            display: none;
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .transport-form {
+            background: linear-gradient(145deg, #ffffff, #f1f2f6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .transport-form .form-group {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .transport-form .address-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .transport-form .address-group h3 {
+            font-size: 20px;
+            color: #1e272e;
+        }
+        .transport-form label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 14px;
+            color: #636e72;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .transport-form input:not([type="file"]),
+        .transport-form textarea,
+        .transport-form select {
+            padding: 15px 10px 8px;
+            font-size: 14px;
+            border: 2px solid #dfe6e9;
+            border-radius: 6px;
+        }
+        .transport-form input:focus,
+        .transport-form textarea:focus,
+        .transport-form select:focus,
+        .transport-form input:not(:placeholder-shown),
+        .transport-form textarea:not(:placeholder-shown),
+        .transport-form select:not(:placeholder-shown) {
+            border-color: #f1c40f;
+        }
+        .transport-form input:focus + label,
+        .transport-form textarea:focus + label,
+        .transport-form select:focus + label,
+        .transport-form input:not(:placeholder-shown) + label,
+        .transport-form textarea:not(:placeholder-shown) + label,
+        .transport-form select:not(:placeholder-shown) + label {
+            top: -8px;
+            left: 8px;
+            font-size: 10px;
+            color: #f1c40f;
+        }
+        .transport-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .transport-form button {
+            background: linear-gradient(45deg, #f1c40f, #f39c12);
+            color: #1e272e;
+            cursor: pointer;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+        .transport-form button:hover {
+            transform: translateY(-3px);
+        }
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #2ecc71;
+            font-size: 20px;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success-message.active {
+            display: block;
+            background-color: #e8f5e9;
+        }
+        .success-message::before {
+            content: '✔ ';
+            color: #2ecc71;
+        }
+        footer {
+            background: linear-gradient(90deg, #1e272e, #485460);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            font-size: 14px;
+        }
+        @media (min-width: 768px) {
+            .navbar {
+                padding: 20px 40px;
+            }
+            .navbar .logo {
+                font-size: 30px;
+            }
+            .navbar .nav-icons {
+                gap: 40px;
+                flex-wrap: nowrap;
+                justify-content: space-around;
+                overflow-x: auto;
+            }
+            .navbar .nav-icons i {
+                font-size: 30px;
+            }
+            .navbar .language-switcher select {
+                padding: 10px;
+                font-size: 16px;
+            }
+            .content {
+                margin-top: 100px;
+                padding: 40px;
+            }
+            .section {
+                padding: 40px;
+                border-radius: 15px;
+            }
+            .home-section,
+            .bau-section,
+            .transport-section,
+            .cleaning-section,
+            .about-section,
+            .legal-section {
+                padding: 80px 40px;
+                border-radius: 15px;
+            }
+            .section h1 {
+                font-size: 56px;
+                margin-bottom: 40px;
+            }
+            .section h2 {
+                font-size: 32px;
+                margin-bottom: 30px;
+            }
+            .section h3 {
+                font-size: 24px;
+                margin: 20px 0 15px;
+            }
+            .section p, .section li {
+                font-size: 17px;
+                margin-bottom: 15px;
+            }
+            .home-section p,
+            .bau-section p,
+            .bau-section li,
+            .transport-section p,
+            .cleaning-section p,
+            .about-section p,
+            .legal-section p,
+            .legal-section li {
+                font-size: 20px;
+                margin-bottom: 40px;
+            }
+            .home-section {
+                padding: 100px 40px;
+            }
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 20px;
+                border-radius: 8px;
+            }
+            .contact-item i {
+                font-size: 32px;
+            }
+            .contact-item p,
+            .contact-item a {
+                font-size: 17px;
+            }
+            .appointment-form,
+            .transport-form {
+                max-width: 800px;
+                gap: 25px;
+            }
+            .appointment-form input,
+            .appointment-form textarea,
+            .appointment-form button,
+            .transport-form input:not([type="file"]),
+            .transport-form textarea,
+            .transport-form select,
+            .transport-form button {
+                padding: 15px;
+                font-size: 17px;
+                border-radius: 8px;
+            }
+            .transport-form {
+                max-width: 1000px;
+                padding: 30px;
+                gap: 30px;
+                border-radius: 15px;
+            }
+            .transport-form .address-group {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            .transport-form label {
+                top: 15px;
+                left: 15px;
+                font-size: 16px;
+            }
+            .transport-form input:not([type="file"]),
+            .transport-form textarea,
+            .transport-form select {
+                padding: 20px 15px 10px;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+            .transport-form button {
+                padding: 15px;
+                font-size: 18px;
+                border-radius: 10px;
+            }
+            footer {
+                font-size: 16px;
+                padding: 15px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 15px;
+                flex-wrap: nowrap;
+            }
+            .navbar .logo {
+                font-size: 20px;
+            }
+            .navbar .nav-icons {
+                gap: 20px;
+                flex-wrap: nowrap;
+                justify-content: space-around;
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+            .navbar .nav-icons i {
+                font-size: 20px;
+            }
+            .navbar .language-switcher select {
+                padding: 6px;
+                font-size: 12px;
+            }
+            .content {
+                margin-top: 60px;
+                padding: 15px;
+                margin-bottom: 50px;
+            }
+            .section {
+                padding: 15px;
+                border-radius: 8px;
+            }
+            .home-section,
+            .bau-section,
+            .transport-section,
+            .cleaning-section,
+            .about-section,
+            .legal-section {
+                padding: 40px 15px;
+                border-radius: 8px;
+            }
+            .section h1 {
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+            .section h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            .section h3 {
+                font-size: 18px;
+                margin: 10px 0 8px;
+            }
+            .section p, .section li {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            .home-section p,
+            .bau-section p,
+            .bau-section li,
+            .transport-section p,
+            .cleaning-section p,
+            .about-section p,
+            .legal-section p,
+            .legal-section li {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+            .cta-button {
+                padding: 8px 15px;
+                font-size: 14px;
+                border-radius: 5px;
+            }
+            .contact-container {
+                gap: 15px;
+            }
+            .contact-item i {
+                font-size: 20px;
+            }
+            .contact-item p,
+            .contact-item a {
+                font-size: 14px;
+            }
+            .appointment-form,
+            .transport-form {
+                gap: 10px;
+            }
+            .appointment-form input,
+            .appointment-form textarea,
+            .appointment-form button,
+            .transport-form input:not([type="file"]),
+            .transport-form textarea,
+            .transport-form select,
+            .transport-form button {
+                padding: 8px;
+                font-size: 14px;
+                border-radius: 5px;
+            }
+            .appointment-form textarea,
+            .transport-form textarea {
+                min-height: 100px;
+            }
+            .transport-form {
+                padding: 15px;
+                gap: 15px;
+                border-radius: 8px;
+            }
+            .transport-form .address-group h3 {
+                font-size: 18px;
+            }
+            .transport-form label {
+                top: 8px;
+                left: 8px;
+                font-size: 12px;
+            }
+            .transport-form input:not([type="file"]),
+            .transport-form textarea,
+            .transport-form select {
+                padding: 12px 8px 6px;
+                font-size: 12px;
+                border-radius: 5px;
+            }
+            .transport-form button {
+                padding: 8px;
+                font-size: 14px;
+                border-radius: 5px;
+            }
+            footer {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo">MH Bau und Transport UG</div>
+        <div class="nav-icons">
+            <i class="fas fa-home" data-section="home" title="Home" aria-label="Go to Home" tabindex="0"></i>
+            <i class="fas fa-hammer" data-section="bau" title="Bau (Abbruch)" aria-label="Go to Bau (Demolition)" tabindex="0"></i>
+            <i class="fas fa-truck" data-section="transport" title="Transport (Umzug)" aria-label="Go to Transport (Relocation)" tabindex="0"></i>
+            <i class="fas fa-broom" data-section="cleaning" title="Cleaning" aria-label="Go to Cleaning" tabindex="0"></i>
+            <i class="fas fa-info-circle" data-section="about" title="About Us" aria-label="Go to About Us" tabindex="0"></i>
+            <i class="fas fa-envelope" data-section="contact" title="Contact Us" aria-label="Go to Contact Us" tabindex="0"></i>
+            <i class="fas fa-calendar-alt" data-section="appointment" title="Appointment" aria-label="Go to Appointment" tabindex="0"></i>
+            <i class="fas fa-file-alt" data-section="legal" title="Privacy & Terms" aria-label="Go to Privacy Policy and Terms" tabindex="0"></i>
+        </div>
+        <div class="language-switcher">
+            <select id="language" aria-label="Select language">
+                <option value="en">English</option>
+                <option value="de" selected>Deutsch</option>
+            </select>
+        </div>
+    </nav>
+
+    <div class="content">
+        <section id="home" class="section home-section active" data-en='
+            <h1>Welcome to MH Bau und Transport UG</h1>
+            <h2>Our Services</h2>
+            <p>If you need professional and experienced services, our team is here to assist you. Whether it’s demolition, relocation, or cleaning, we deliver top-quality results with expertise and dedication. Feel free to contact us via email!</p>
+        ' data-de='
+            <h1>Willkommen bei MH Bau und Transport UG</h1>
+            <h2>Unsere Dienstleistungen</h2>
+            <p>Wenn Sie professionelle und erfahrene Dienstleistungen benötigen, ist unser Team für Sie da. Ob Abbruch, Umzug oder Reinigung, wir liefern erstklassige Ergebnisse mit Fachwissen und Engagement. Kontaktieren Sie uns gerne per E-Mail!</p>
+        '></section>
+
+        <section id="bau" class="section bau-section" data-en='
+            <h2><a href="#" data-section="bau">Bau (Demolition)</a></h2>
+            <p>Your reliable partner for demolition, deconstruction, gutting, and disposal</p>
+            <p>Whether it’s individual walls, floors, roof structures, or entire buildings – we handle all types of demolition and deconstruction work for private and commercial clients in Berlin. We place the highest emphasis on safety, precision, and cleanliness to ensure your project is completed smoothly and on schedule.</p>
+            <p>We start with a free on-site inspection and provide you with a non-binding offer tailored to your specific requirements. This ensures full cost transparency and planning certainty from the outset.</p>
+            <h3>Our Services at a Glance:</h3>
+            <ul>
+                <li>Professional demolition and deconstruction of walls, floors, ceilings, and entire buildings</li>
+                <li>Expert gutting of apartments, houses, and commercial properties</li>
+                <li>Environmentally compliant and legally sound disposal of all construction materials</li>
+                <li>Low-dust and low-noise operations using modern machinery and proven techniques</li>
+            </ul>
+            <h3>Why Choose Us:</h3>
+            <ul>
+                <li>An experienced, well-coordinated team with state-of-the-art equipment</li>
+                <li>High safety standards in all operations</li>
+                <li>Fair, transparent, and comprehensible pricing</li>
+                <li>Personalized advice and customized solutions for every project</li>
+            </ul>
+            <p>Rely on our experience, expertise, and reliability. Contact us today and let our service convince you – we look forward to your project!</p>
+            <a href="#" class="cta-button" data-section="appointment">Book Appointment</a>
+        ' data-de='
+            <h2><a href="#" data-section="bau">Bau (Abbruch)</a></h2>
+            <p>Ihr zuverlässiger Partner für Abriss, Abbruch, Entkernung und Entsorgung</p>
+            <p>Ob einzelne Wände, Böden, Dachkonstruktionen oder ganze Gebäude – wir übernehmen Abriss- und Abbrucharbeiten aller Art für Privat- und Gewerbekunden in Berlin. Dabei legen wir größten Wert auf Sicherheit, Präzision und Sauberkeit, damit Ihr Projekt reibungslos und termingerecht umgesetzt wird.</p>
+            <p>Wir beginnen mit einer kostenlosen Besichtigung vor Ort und erstellen Ihnen ein unverbindliches Angebot, das genau auf Ihre Anforderungen abgestimmt ist. So erhalten Sie von Anfang an volle Kostentransparenz und Planungssicherheit.</p>
+            <h3>Unsere Leistungen im Überblick:</h3>
+            <ul>
+                <li>Fachgerechter Abriss und Abbruch von Wänden, Böden, Decken und kompletten Gebäuden</li>
+                <li>Professionelle Entkernung von Wohnungen, Häusern und Gewerbeimmobilien</li>
+                <li>Umweltgerechte und gesetzeskonforme Entsorgung aller Baumaterialien</li>
+                <li>Staub- und lärmarme Arbeitsweise durch moderne Maschinen und bewährte Technik</li>
+            </ul>
+            <h3>Warum wir die richtige Wahl sind:</h3>
+            <ul>
+                <li>Ein erfahrenes, eingespieltes Team mit modernster Ausrüstung</li>
+                <li>Hohe Sicherheitsstandards bei allen Arbeiten</li>
+                <li>Faire, nachvollziehbare und transparente Preisgestaltung</li>
+                <li>Individuelle Beratung und maßgeschneiderte Lösungen für jedes Projekt</li>
+            </ul>
+            <p>Setzen Sie auf Erfahrung, Kompetenz und Zuverlässigkeit. Kontaktieren Sie uns noch heute und lassen Sie sich von unserem Service überzeugen – wir freuen uns auf Ihr Projekt!</p>
+            <a href="#" class="cta-button" data-section="appointment">Termin Vereinbaren</a>
+        '></section>
+
+        <section id="transport" class="section transport-section" data-en='
+            <h2><a href="#" data-section="transport">Transport (Relocation)</a></h2>
+            <p class="intro">Our relocation services ensure a seamless and stress-free moving experience. Our team handles your belongings with care, guaranteeing an efficient transition.</p>
+            <p>Plan your move with us! Fill out the form below to provide your relocation details, and we’ll calculate the prices and get back to you promptly.</p>
+            <form class="transport-form" aria-label="Relocation request form">
+                <div class="address-group">
+                    <h3>From Address</h3>
+                    <div class="form-group">
+                        <input type="text" id="from-street" placeholder=" " required aria-describedby="from-street-error">
+                        <label for="from-street">Street</label>
+                        <span class="error-message" id="from-street-error">Street is required.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="from-house-number" placeholder=" " required aria-describedby="from-house-number-error">
+                        <label for="from-house-number">House Number</label>
+                        <span class="error-message" id="from-house-number-error">House number is required.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="from-postal-code" placeholder=" " required aria-describedby="from-postal-code-error">
+                        <label for="from-postal-code">Postal Code</label>
+                        <span class="error-message" id="from-postal-code-error">Postal code must be valid.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="from-city" placeholder=" " required aria-describedby="from-city-error">
+                        <label for="from-city">City</label>
+                        <span class="error-message" id="from-city-error">City is required.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="from-floor" placeholder=" " min="0" required aria-describedby="from-floor-error">
+                        <label for="from-floor">Floor</label>
+                        <span class="error-message" id="from-floor-error">Floor must be 0 or higher.</span>
+                    </div>
+                </div>
+                <div class="address-group">
+                    <h3>To Address</h3>
+                    <div class="form-group">
+                        <input type="text" id="to-street" placeholder=" " required aria-describedby="to-street-error">
+                        <label for="to-street">Street</label>
+                        <span class="error-message" id="to-street-error">Street is required.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="to-house-number" placeholder=" " required aria-describedby="to-house-number-error">
+                        <label for="to-house-number">House Number</label>
+                        <span class="error-message" id="to-house-number-error">House number is required.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="to-postal-code" placeholder=" " required aria-describedby="to-postal-code-error">
+                        <label for="to-postal-code">Postal Code</label>
+                        <span class="error-message" id="to-postal-code-error">Postal code must be valid.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="to-city" placeholder=" " required aria-describedby="to-city-error">
+                        <label for="to-city">City</label>
+                        <span class="error-message" id="to-city-error">City is required.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="to-floor" placeholder=" " min="0" required aria-describedby="to-floor-error">
+                        <label for="to-floor">Floor</label>
+                        <span class="error-message" id="to-floor-error">Floor must be 0 or higher.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <select id="parking" required aria-describedby="parking-error">
+                        <option value="" disabled selected></option>
+                        <option value="yes">Yes, easy to find</option>
+                        <option value="no">No, difficult</option>
+                    </select>
+                    <label for="parking">Parking Availability</label>
+                    <span class="error-message" id="parking-error">Please select parking availability.</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="move-datetime" placeholder=" " required aria-describedby="move-datetime-error">
+                    <label for="move-datetime">Preferred Moving Date and Time</label>
+                    <span class="error-message" id="move-datetime-error">Please select a valid date and time.</span>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder=" " required aria-describedby="email-error">
+                    <label for="email">Your Email</label>
+                    <span class="error-message" id="email-error">Please enter a valid email.</span>
+                </div>
+                <div class="form-group">
+                    <textarea id="transport-message" placeholder=" " maxlength="500" required aria-describedby="transport-message-error"></textarea>
+                    <label for="transport-message">Message</label>
+                    <span class="error-message" id="transport-message-error">Message is required.</span>
+                </div>
+                <div class="form-group">
+                    <div class="file-input-container">
+                        <input type="file" id="images" class="file-input" accept="image/*" multiple>
+                        <label for="images" class="file-input-label">Drag & Drop or Click to Upload Pictures</label>
+                        <div class="image-preview" id="image-preview"></div>
+                    </div>
+                </div>
+                <button type="submit" id="submit-button">Send</button>
+                <div class="success-message" id="transport-success"></div>
+            </form>
+        ' data-de='
+            <h2><a href="#" data-section="transport">Transport (Umzug)</a></h2>
+            <p class="intro">Unsere Umzugsdienste garantieren ein nahtloses und stressfreies Umzugserlebnis. Unser Team behandelt Ihre Besitztümer mit Sorgfalt und sorgt für einen effizienten Übergang.</p>
+            <p>Planen Sie Ihren Umzug mit uns! Füllen Sie das untenstehende Formular mit Ihren Umzugsdetails aus, und wir berechnen die Preise und melden uns umgehend bei Ihnen.</p>
+            <form class="transport-form" aria-label="Umzugsanfrageformular">
+                <div class="address-group">
+                    <h3>Startadresse</h3>
+                    <div class="form-group">
+                        <input type="text" id="from-street" placeholder=" " required aria-describedby="from-street-error">
+                        <label for="from-street">Straße</label>
+                        <span class="error-message" id="from-street-error">Straße ist erforderlich.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="from-house-number" placeholder=" " required aria-describedby="from-house-number-error">
+                        <label for="from-house-number">Hausnummer</label>
+                        <span class="error-message" id="from-house-number-error">Hausnummer ist erforderlich.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="from-postal-code" placeholder=" " required aria-describedby="from-postal-code-error">
+                        <label for="from-postal-code">Postleitzahl</label>
+                        <span class="error-message" id="from-postal-code-error">Postleitzahl muss gültig sein.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="from-city" placeholder=" " required aria-describedby="from-city-error">
+                        <label for="from-city">Stadt</label>
+                        <span class="error-message" id="from-city-error">Stadt ist erforderlich.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="from-floor" placeholder=" " min="0" required aria-describedby="from-floor-error">
+                        <label for="from-floor">Stockwerk</label>
+                        <span class="error-message" id="from-floor-error">Stockwerk muss 0 oder höher sein.</span>
+                    </div>
+                </div>
+                <div class="address-group">
+                    <h3>Zieladresse</h3>
+                    <div class="form-group">
+                        <input type="text" id="to-street" placeholder=" " required aria-describedby="to-street-error">
+                        <label for="to-street">Straße</label>
+                        <span class="error-message" id="to-street-error">Straße ist erforderlich.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="to-house-number" placeholder=" " required aria-describedby="to-house-number-error">
+                        <label for="to-house-number">Hausnummer</label>
+                        <span class="error-message" id="to-house-number-error">Hausnummer ist erforderlich.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="to-postal-code" placeholder=" " required aria-describedby="to-postal-code-error">
+                        <label for="to-postal-code">Postleitzahl</label>
+                        <span class="error-message" id="to-postal-code-error">Postleitzahl muss gültig sein.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="to-city" placeholder=" " required aria-describedby="to-city-error">
+                        <label for="to-city">Stadt</label>
+                        <span class="error-message" id="to-city-error">Stadt ist erforderlich.</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" id="to-floor" placeholder=" " min="0" required aria-describedby="to-floor-error">
+                        <label for="to-floor">Stockwerk</label>
+                        <span class="error-message" id="to-floor-error">Stockwerk muss 0 oder höher sein.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <select id="parking" required aria-describedby="parking-error">
+                        <option value="" disabled selected></option>
+                        <option value="yes">Ja,elder: 0px;
+                    </select>
+                    <label for="parking">Parkmöglichkeiten</label>
+                    <span class="error-message" id="parking-error">Bitte wählen Sie die Parkmöglichkeiten aus.</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="move-datetime" placeholder=" " required aria-describedby="move-datetime-error">
+                    <label for="move-datetime">Bevorzugtes Umzugsdatum und -uhrzeit</label>
+                    <span class="error-message" id="move-datetime-error">Bitte wählen Sie ein gültiges Datum und eine Uhrzeit.</span>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder=" " required aria-describedby="email-error">
+                    <label for="email">Ihre E-Mail</label>
+                    <span class="error-message" id="email-error">Bitte geben Sie eine gültige E-Mail ein.</span>
+                </div>
+                <div class="form-group">
+                    <textarea id="transport-message" placeholder=" " maxlength="500" required aria-describedby="transport-message-error"></textarea>
+                    <label for="transport-message">Nachricht</label>
+                    <span class="error-message" id="transport-message-error">Nachricht ist erforderlich.</span>
+                </div>
+                <div class="form-group">
+                    <div class="file-input-container">
+                        <input type="file" id="images" class="file-input" accept="image/*" multiple>
+                        <label for="images" class="file-input-label">Drag & Drop oder Klicken, um Bilder hochzuladen</label>
+                        <div class="image-preview" id="image-preview"></div>
+                    </div>
+                </div>
+                <button type="submit" id="submit-button">Absenden</button>
+                <div class="success-message" id="transport-success"></div>
+            </form>
+        '></section>
+
+        <section id="cleaning" class="section cleaning-section" data-en='
+            <h2><a href="#" data-section="cleaning">Cleaning</a></h2>
+            <p>Our cleaning team provides top-tier services for homes, offices, and construction sites, using eco-friendly products and advanced techniques tailored to your needs.</p>
+            <a href="#" class="cta-button" data-section="appointment">Book Appointment</a>
+        ' data-de='
+            <h2><a href="#" data-section="cleaning">Reinigung</a></h2>
+            <p>Unser Reinigungsteam bietet erstklassige Dienstleistungen für Wohnungen, Büros und Baustellen mit umweltfreundlichen Produkten und fortschrittlichen Techniken, die auf Ihre Bedürfnisse abgestimmt sind.</p>
+            <a href="#" class="cta-button" data-section="appointment">Termin Vereinbaren</a>
+        '></section>
+
+        <section id="about" class="section about-section" data-en='
+            <h2>About Us</h2>
+            <p>At MH Bau und Transport UG, we deliver exceptional services in <a href="#" data-section="bau">Bau (Demolition)</a>, <a href="#" data-section="transport">Umzug (Relocation)</a>, and <a href="#" data-section="cleaning">Cleaning</a>. Our team is committed to quality, reliability, and customer satisfaction.</p>
+            <h3>Bau (Demolition)</h3>
+            <p>Our demolition experts handle projects of all scales with precision and safety, using advanced equipment and adhering to strict regulations for efficient, eco-conscious results.</p>
+            <h3>Umzug (Relocation)</h3>
+            <p>Our relocation services ensure stress-free moves for homes and businesses, managing packing, transport, and unpacking with care and efficiency.</p>
+            <h3>Cleaning</h3>
+            <p>Our cleaning team delivers spotless results for residential, commercial, and post-construction spaces, using eco-friendly products and tailored techniques.</p>
+        ' data-de='
+            <h2>Über Uns</h2>
+            <p>Bei MH Bau und Transport UG bieten wir herausragende Dienstleistungen in <a href="#" data-section="bau">Abbruch</a>, <a href="#" data-section="transport">Umzug</a> und <a href="#" data-section="cleaning">Reinigung</a>. Unser Team setzt auf Qualität, Zuverlässigkeit und Kundenzufriedenheit.</p>
+            <h3>Abbruch</h3>
+            <p>Unsere Abbruchexperten führen Projekte jeder Größe mit Präzision und Sicherheit durch, nutzen moderne Geräte und halten strenge Vorschriften für effiziente, umweltbewusste Ergebnisse ein.</p>
+            <h3>Umzug</h3>
+            <p>Unsere Umzugsdienste bieten stressfreie Umzüge für Privat- und Geschäftskunden, mit sorgfältigem Einpacken, Transport und Auspacken.</p>
+            <h3>Reinigung</h3>
+            <p>Unser Reinigungsteam liefert makellose Ergebnisse für Wohn-, Geschäfts- und Nachbauräume mit umweltfreundlichen Produkten und maßgeschneiderten Techniken.</p>
+        '></section>
+
+        <section id="contact" class="section" data-en='
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Kolonnenstr. 8, 10827 Berlin</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+4903023520929">+49 (030) 23520929</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+4915776936032">+49 1577 6936032 (WhatsApp)</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:mh@bau-und-transport.de">mh@bau-und-transport.de</a>
+                </div>
+            </div>
+        ' data-de='
+            <h2>Kontaktieren Sie Uns</h2>
+            <div class="contact-container">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Kolonnenstr. 8, 10827 Berlin</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+4903023520929">+49 (030) 23520929</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+4915776936032">+49 1577 6936032 (WhatsApp)</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:mh@bau-und-transport.de">mh@bau-und-transport.de</a>
+                </div>
+            </div>
+        '></section>
+
+        <section id="appointment" class="section" data-en='
+            <h2>Book an Appointment</h2>
+            <form class="appointment-form" aria-label="Appointment booking form">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Your Name" required aria-describedby="name-error">
+                    <span class="error-message" id="name-error">Name must be 2-50 characters.</span>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Your Email" required aria-describedby="email-error">
+                    <span class="error-message" id="email-error">Please enter a valid email.</span>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="Your Message (up to 1000 characters)" required maxlength="1000" aria-describedby="message-error"></textarea>
+                    <span class="error-message" id="message-error">Message is required.</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="datetime" placeholder="Select Date and Time" required aria-describedby="datetime-error">
+                    <span class="error-message" id="datetime-error">Please select a valid date and time.</span>
+                </div>
+                <button type="submit">Submit</button>
+                <div class="success-message" id="appointment-success"></div>
+                <button class="debug-button" onclick="testEmailJS()">Test EmailJS</button>
+            </form>
+        ' data-de='
+            <h2>Termin Vereinbaren</h2>
+            <form class="appointment-form" aria-label="Terminbuchungsformular">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Ihr Name" required aria-describedby="name-error">
+                    <span class="error-message" id="name-error">Name muss 2-50 Zeichen lang sein.</span>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Ihre E-Mail" required aria-describedby="email-error">
+                    <span class="error-message" id="email-error">Bitte geben Sie eine gültige E-Mail ein.</span>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="Ihre Nachricht (bis zu 1000 Zeichen)" required maxlength="1000" aria-describedby="message-error"></textarea>
+                    <span class="error-message" id="message-error">Nachricht ist erforderlich.</span>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="datetime" placeholder="Datum und Uhrzeit auswählen" required aria-describedby="datetime-error">
+                    <span class="error-message" id="datetime-error">Bitte wählen Sie ein gültiges Datum und eine Uhrzeit.</span>
+                </div>
+                <button type="submit">Absenden</button>
+                <div class="success-message" id="appointment-success"></div>
+                <button class="debug-button" onclick="testEmailJS()">Test EmailJS</button>
+            </form>
+        '></section>
+
+        <section id="legal" class="section legal-section" data-en='
+            <h2>Privacy Policy and Terms & Conditions</h2>
+            <h3>Privacy Policy</h3>
+            <p>We, MH Bau und Transport UG, take the protection of your personal data seriously and comply with the General Data Protection Regulation (GDPR) and other applicable data protection laws in Germany.</p>
+            <h4>1. Responsible Party</h4>
+            <p>The responsible party for data processing on this website is:</p>
+            <p>MH Bau und Transport UG<br>Kolonnenstr. 8, 10827 Berlin<br>Email: mh@bau-und-transport.de</p>
+            <h4>2. Data Collection</h4>
+            <p>We collect personal data when you provide it to us, such as through our contact or appointment forms (e.g., name, email, address, phone number, message content). We also collect data automatically through server log files (e.g., IP address, browser type, date/time of access) and use local storage for booked appointment slots.</p>
+            <h4>3. Purpose of Data Processing</h4>
+            <p>Your data is processed to:</p>
+            <ul>
+                <li>Respond to your inquiries and process your requests (e.g., appointment bookings, relocation inquiries).</li>
+                <li>Provide and improve our services.</li>
+                <li>Comply with legal obligations.</li>
+            </ul>
+            <h4>4. Legal Basis</h4>
+            <p>Data processing is based on:</p>
+            <ul>
+                <li>Your consent (Art. 6(1)(a) GDPR).</li>
+                <li>Necessity for the performance of a contract or pre-contractual measures (Art. 6(1)(b) GDPR).</li>
+                <li>Our legitimate interest in providing a functional website and services (Art. 6(1)(f) GDPR).</li>
+            </ul>
+            <h4>5. Data Sharing</h4>
+            <p>Your data is shared with EmailJS (for sending emails) and stored securely. We do not share your data with other third parties unless required by law.</p>
+            <h4>6. Data Retention</h4>
+            <p>We retain your data only as long as necessary for the purposes outlined or as required by law. Booked appointment slots are stored in your browser’s local storage and deleted when no longer needed.</p>
+            <h4>7. Your Rights</h4>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access, rectify, or erase your personal data.</li>
+                <li>Restrict or object to processing.</li>
+                <li>Data portability.</li>
+                <li>Withdraw consent at any time.</li>
+                <li>Lodge a complaint with a supervisory authority (e.g., Berliner Beauftragte für Datenschutz und Informationsfreiheit).</li>
+            </ul>
+            <p>Contact us at mh@bau-und-transport.de to exercise your rights.</p>
+            <h4>8. Data Security</h4>
+            <p>We use technical and organizational measures to protect your data, including SSL encryption for data transmission.</p>
+            <h3>Terms & Conditions</h3>
+            <h4>1. Scope</h4>
+            <p>These terms govern the use of our website and services provided by MH Bau und Transport UG.</p>
+            <h4>2. Services</h4>
+            <p>We offer demolition, relocation, and cleaning services. Offers are non-binding until a contract is signed. Prices are agreed upon individually based on the scope of services.</p>
+            <h4>3. Liability</h4>
+            <p>We are liable for damages caused by intent or gross negligence. Liability for slight negligence is limited to foreseeable damages. We are not liable for indirect damages or loss of profits unless required by law.</p>
+            <h4>4. Contract Conclusion</h4>
+            <p>Contracts are concluded upon written confirmation of our offer. Cancellations must be made in writing and may incur fees based on the stage of service provision.</p>
+            <h4>5. Payment Terms</h4>
+            <p>Payments are due as agreed in the contract, typically within 14 days of invoicing. Late payments incur default interest at 9% above the base rate.</p>
+            <h4>6. Governing Law and Jurisdiction</h4>
+            <p>These terms are governed by German law. The place of jurisdiction is Berlin, unless otherwise required by law.</p>
+            <h4>7. Severability</h4>
+            <p>If any provision is invalid, the remaining provisions remain effective.</p>
+            <p>Contact us at mh@bau-und-transport.de for inquiries regarding our services or terms.</p>
+        ' data-de='
+            <h2>Datenschutzerklärung und Allgemeine Geschäftsbedingungen</h2>
+            <h3>Datenschutzerklärung</h3>
+            <p>Wir, die MH Bau und Transport UG, nehmen den Schutz Ihrer personenbezogenen Daten ernst und halten die Datenschutz-Grundverordnung (DSGVO) sowie andere geltende Datenschutzgesetze in Deutschland ein.</p>
+            <h4>1. Verantwortliche Stelle</h4>
+            <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+            <p>MH Bau und Transport UG<br>Kolonnenstr. 8, 10827 Berlin<br>E-Mail: mh@bau-und-transport.de</p>
+            <h4>2. Datenerhebung</h4>
+            <p>Wir erheben personenbezogene Daten, wenn Sie uns diese mitteilen, z. B. über unsere Kontakt- oder Terminbuchungsformulare (z. B. Name, E-Mail, Adresse, Telefonnummer, Nachrichteninhalt). Zudem erheben wir automatisch Daten durch Server-Logdateien (z. B. IP-Adresse, Browsertyp, Datum/Uhrzeit des Zugriffs) und nutzen den lokalen Speicher für gebuchte Terminslots.</p>
+            <h4>3. Zweck der Datenverarbeitung</h4>
+            <p>Ihre Daten werden verarbeitet, um:</p>
+            <ul>
+                <li>Ihre Anfragen zu beantworten und Ihre Aufträge zu bearbeiten (z. B. Terminbuchungen, Umzugsanfragen).</li>
+                <li>Unsere Dienstleistungen bereitzustellen und zu verbessern.</li>
+                <li>Gesetzliche Verpflichtungen zu erfüllen.</li>
+            </ul>
+            <h4>4. Rechtsgrundlage</h4>
+            <p>Die Datenverarbeitung basiert auf:</p>
+            <ul>
+                <li>Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).</li>
+                <li>Der Erforderlichkeit zur Vertragserfüllung oder vorvertraglichen Maßnahmen (Art. 6 Abs. 1 lit. b DSGVO).</li>
+                <li>Unserem berechtigten Interesse an der Bereitstellung einer funktionsfähigen Website und Dienstleistungen (Art. 6 Abs. 1 lit. f DSGVO).</li>
+            </ul>
+            <h4>5. Datenweitergabe</h4>
+            <p>Ihre Daten werden an EmailJS (zum Versenden von E-Mails) weitergegeben und sicher gespeichert. Eine Weitergabe an andere Dritte erfolgt nur, wenn dies gesetzlich erforderlich ist.</p>
+            <h4>6. Aufbewahrungsdauer</h4>
+            <p>Wir speichern Ihre Daten nur so lange, wie es für die genannten Zwecke erforderlich ist oder gesetzlich vorgeschrieben. Gebuchte Terminslots werden im lokalen Speicher Ihres Browsers gespeichert und gelöscht, wenn sie nicht mehr benötigt werden.</p>
+            <h4>7. Ihre Rechte</h4>
+            <p>Sie haben das Recht auf:</p>
+            <ul>
+                <li>Auskunft, Berichtigung oder Löschung Ihrer personenbezogenen Daten.</li>
+                <li>Einschränkung der Verarbeitung oder Widerspruch gegen die Verarbeitung.</li>
+                <li>Datenübertragbarkeit.</li>
+                <li>Widerruf Ihrer Einwilligung jederzeit.</li>
+                <li>Beschwerde bei einer Aufsichtsbehörde (z. B. Berliner Beauftragte für Datenschutz und Informationsfreiheit).</li>
+            </ul>
+            <p>Kontaktieren Sie uns unter mh@bau-und-transport.de, um Ihre Rechte auszuüben.</p>
+            <h4>8. Datensicherheit</h4>
+            <p>Wir nutzen technische und organisatorische Maßnahmen zum Schutz Ihrer Daten, einschließlich SSL-Verschlüsselung für die Datenübertragung.</p>
+            <h3>Allgemeine Geschäftsbedingungen</h3>
+            <h4>1. Geltungsbereich</h4>
+            <p>Diese Bedingungen regeln die Nutzung unserer Website und die von der MH Bau und Transport UG erbrachten Dienstleistungen.</p>
+            <h4>2. Dienstleistungen</h4>
+            <p>Wir bieten Abbruch-, Umzugs- und Reinigungsdienste an. Angebote sind unverbindlich, bis ein Vertrag unterzeichnet ist. Preise werden individuell je nach Leistungsumfang vereinbart.</p>
+            <h4>3. Haftung</h4>
+            <p>Wir haften für Schäden durch Vorsatz oder grobe Fahrlässigkeit. Die Haftung bei leichter Fahrlässigkeit ist auf vorhersehbare Schäden beschränkt. Für indirekte Schäden oder entgangenen Gewinn haften wir nicht, es sei denn, dies ist gesetzlich vorgeschrieben.</p>
+            <h4>4. Vertragsschluss</h4>
+            <p>Verträge kommen durch schriftliche Bestätigung unseres Angebots zustande. Stornierungen müssen schriftlich erfolgen und können je nach Leistungsstand Gebühren nach sich ziehen.</p>
+            <h4>5. Zahlungsbedingungen</h4>
+            <p>Zahlungen sind wie im Vertrag vereinbart fällig, in der Regel innerhalb von 14 Tagen nach Rechnungsstellung. Bei Zahlungsverzug fallen Verzugszinsen in Höhe von 9 % über dem Basiszinssatz an.</p>
+            <h4>6. Anwendbares Recht und Gerichtsstand</h4>
+            <p>Diese Bedingungen unterliegen deutschem Recht. Gerichtsstand ist Berlin, soweit nicht gesetzlich anderweitig vorgeschrieben.</p>
+            <h4>7. Salvatorische Klausel</h4>
+            <p>Sollte eine Bestimmung unwirksam sein, bleiben die übrigen Bestimmungen wirksam.</p>
+            <p>Kontaktieren Sie uns unter mh@bau-und-transport.de für Anfragen zu unseren Dienstleistungen oder Bedingungen.</p>
+        '></section>
+    </div>
+
+    <footer id="footer" data-en='
+        <p>© 2025 MH Bau und Transport UG. All rights reserved. | <a href="#" data-section="legal">Privacy Policy & Terms</a></p>
+    ' data-de='
+        <p>© 2025 MH Bau und Transport UG. Alle Rechte vorbehalten. | <a href="#" data-section="legal">Datenschutzerklärung & AGB</a></p>
+    '></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Initialize EmailJS with your Public Key
+        emailjs.init('lCGtBiiL5MLWlh28S');
+
+        // Load and validate booked slots
+        let bookedSlots = [];
+        try {
+            const stored = JSON.parse(localStorage.getItem('bookedSlots')) || [];
+            bookedSlots = stored.filter(slot => {
+                const date = new Date(slot);
+                return !isNaN(date.getTime()) && date > new Date();
+            });
+            localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
+            console.log('Booked slots loaded:', bookedSlots);
+        } catch (e) {
+            console.error('Error parsing bookedSlots:', e);
+            localStorage.setItem('bookedSlots', JSON.stringify([]));
+        }
+
+        const translations = {
+            en: {
+                home: document.getElementById('home').getAttribute('data-en'),
+                bau: document.getElementById('bau').getAttribute('data-en'),
+                transport: document.getElementById('transport').getAttribute('data-en'),
+                cleaning: document.getElementById('cleaning').getAttribute('data-en'),
+                about: document.getElementById('about').getAttribute('data-en'),
+                contact: document.getElementById('contact').getAttribute('data-en'),
+                appointment: document.getElementById('appointment').getAttribute('data-en'),
+                legal: document.getElementById('legal').getAttribute('data-en'),
+                footer: document.getElementById('footer').getAttribute('data-en'),
+                successMessage: 'Request submitted successfully! Email sent to mh@bau-und-transport.de.',
+                errorMessage: 'Failed to submit request. Please try again or contact support.',
+                validationErrors: {
+                    name: 'Name must be 2-50 characters.',
+                    email: 'Please enter a valid email.',
+                    message: 'Message is required.',
+                    datetime: 'Please select a valid date and time.',
+                    booked: 'This time slot is already booked.',
+                    emailjs: 'EmailJS not configured. Please contact the administrator.',
+                    street: 'Street is required.',
+                    houseNumber: 'House number is required.',
+                    postalCode: 'Postal code must be valid (e.g., 12345).',
+                    city: 'City is required.',
+                    floor: 'Floor must be 0 or higher.',
+                    parking: 'Please select parking availability.'
+                }
+            },
+            de: {
+                home: document.getElementById('home').getAttribute('data-de'),
+                bau: document.getElementById('bau').getAttribute('data-de'),
+                transport: document.getElementById('transport').getAttribute('data-de'),
+                cleaning: document.getElementById('cleaning').getAttribute('data-de'),
+                about: document.getElementById('about').getAttribute('data-de'),
+                contact: document.getElementById('contact').getAttribute('data-de'),
+                appointment: document.getElementById('appointment').getAttribute('data-de'),
+                legal: document.getElementById('legal').getAttribute('data-de'),
+                footer: document.getElementById('footer').getAttribute('data-de'),
+                successMessage: 'Anfrage erfolgreich gesendet! E-Mail an mh@bau-und-transport.de versandt.',
+                errorMessage: 'Fehler beim Senden der Anfrage. Bitte versuchen Sie es erneut oder kontaktieren Sie den Support.',
+                validationErrors: {
+                    name: 'Name muss 2-50 Zeichen lang sein.',
+                    email: 'Bitte geben Sie eine gültige E-Mail ein.',
+                    message: 'Nachricht ist erforderlich.',
+                    datetime: 'Bitte wählen Sie ein gültiges Datum und eine Uhrzeit.',
+                    booked: 'Dieser Zeitraum ist bereits gebucht.',
+                    emailjs: 'EmailJS nicht konfiguriert. Bitte kontaktieren Sie den Administrator.',
+                    street: 'Straße ist erforderlich.',
+                    houseNumber: 'Hausnummer ist erforderlich.',
+                    postalCode: 'Postleitzahl muss gültig sein (z. B. 12345).',
+                    city: 'Stadt ist erforderlich.',
+                    floor: 'Stockwerk muss 0 oder höher sein.',
+                    parking: 'Bitte wählen Sie die Parkmöglichkeiten aus.'
+                }
+            }
+        };
+
+        let currentLang = 'de';
+        updateLanguage(currentLang);
+        document.getElementById('home').innerHTML = translations[currentLang].home;
+        document.getElementById('footer').innerHTML = translations[currentLang].footer;
+
+        document.getElementById('language').addEventListener('change', (e) => {
+            currentLang = e.target.value;
+            updateLanguage(currentLang);
+            const activeSection = document.querySelector('.section.active');
+            if (activeSection) {
+                activeSection.innerHTML = translations[currentLang][activeSection.id];
+                if (activeSection.id === 'appointment') initializeAppointmentForm();
+                else if (activeSection.id === 'transport') initializeTransportForm();
+            }
+            document.getElementById('footer').innerHTML = translations[currentLang].footer;
+        });
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('.section, #footer').forEach(element => {
+                element.setAttribute('data-lang', lang);
+            });
+        }
+
+        function sanitizeInput(input) {
+            const div = document.createElement('div');
+            div.textContent = input;
+            return div.innerHTML;
+        }
+
+        function validateAppointmentForm(name, email, message, datetime) {
+            const errors = [];
+            const nameError = document.getElementById('name-error');
+            const emailError = document.getElementById('email-error');
+            const messageError = document.getElementById('message-error');
+            const datetimeError = document.getElementById('datetime-error');
+
+            nameError.style.display = 'none';
+            emailError.style.display = 'none';
+            messageError.style.display = 'none';
+            datetimeError.style.display = 'none';
+
+            console.log('Validating:', { name, email, message, datetime });
+
+            if (!name || name.length < 2 || name.length > 50) {
+                errors.push('name');
+                nameError.textContent = translations[currentLang].validationErrors.name;
+                nameError.style.display = 'block';
+                console.log('Name validation failed:', name);
+            }
+            if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) {
+                errors.push('email');
+                emailError.textContent = translations[currentLang].validationErrors.email;
+                emailError.style.display = 'block';
+                console.log('Email validation failed:', email);
+            }
+            if (!message || message.trim().length === 0) {
+                errors.push('message');
+                messageError.textContent = translations[currentLang].validationErrors.message;
+                messageError.style.display = 'block';
+                console.log('Message validation failed:', message);
+            }
+            if (!datetime) {
+                errors.push('datetime');
+                datetimeError.textContent = translations[currentLang].validationErrors.datetime;
+                datetimeError.style.display = 'block';
+                console.log('Datetime validation failed:', datetime);
+            } else {
+                const selectedDate = new Date(datetime);
+                if (isNaN(selectedDate.getTime())) {
+                    errors.push('datetime');
+                    datetimeError.textContent = translations[currentLang].validationErrors.datetime;
+                    datetimeError.style.display = 'block';
+                    console.log('Invalid date format:', datetime);
+                } else if (bookedSlots.some(slot => new Date(slot).toISOString() === selectedDate.toISOString())) {
+                    errors.push('datetime');
+                    datetimeError.textContent = translations[currentLang].validationErrors.booked;
+                    datetimeError.style.display = 'block';
+                    console.log('Date already booked:', datetime);
+                }
+            }
+
+            if (errors.length > 0) {
+                console.log('Validation failed due to:', errors);
+            } else {
+                console.log('Validation passed');
+            }
+            return errors.length === 0;
+        }
+
+        function validateTransportForm(data) {
+            const errors = [];
+            const fields = [
+                { id: 'from-street', key: 'street', value: data.fromStreet },
+                { id: 'from-house-number', key: 'houseNumber', value: data.fromHouseNumber },
+                { id: 'from-postal-code', key: 'postalCode', value: data.fromPostalCode },
+                { id: 'from-city', key: 'city', value: data.fromCity },
+                { id: 'from-floor', key: 'floor', value: data.fromFloor },
+                { id: 'to-street', key: 'street', value: data.toStreet },
+                { id: 'to-house-number', key: 'houseNumber', value: data.toHouseNumber },
+                { id: 'to-postal-code', key: 'postalCode', value: data.toPostalCode },
+                { id: 'to-city', key: 'city', value: data.toCity },
+                { id: 'to-floor', key: 'floor', value: data.toFloor },
+                { id: 'parking', key: 'parking', value: data.parking },
+                { id: 'move-datetime', key: 'datetime', value: data.moveDatetime },
+                { id: 'email', key: 'email', value: data.email },
+                { id: 'transport-message', key: 'message', value: data.message }
+            ];
+
+            fields.forEach(field => {
+                const errorElement = document.getElementById(`${field.id}-error`);
+                errorElement.style.display = 'none';
+
+                if (!field.value || field.value.trim() === '') {
+                    errors.push(field.id);
+                    errorElement.textContent = translations[currentLang].validationErrors[field.key];
+                    errorElement.style.display = 'block';
+                    console.log(`${field.id} validation failed: empty or invalid`, field.value);
+                } else if (field.id === 'email' && !/^[^@]+@[^@]+\.[^@]+$/.test(field.value)) {
+                    errors.push(field.id);
+                    errorElement.textContent = translations[currentLang].validationErrors.email;
+                    errorElement.style.display = 'block';
+                    console.log(`${field.id} validation failed: invalid email`, field.value);
+                } else if (field.id.includes('postal-code') && !/^\d{5}$/.test(field.value)) {
+                    errors.push(field.id);
+                    errorElement.textContent = translations[currentLang].validationErrors.postalCode;
+                    errorElement.style.display = 'block';
+                    console.log(`${field.id} validation failed: invalid postal code`, field.value);
+                } else if (field.id.includes('floor') && (isNaN(field.value) || field.value < 0)) {
+                    errors.push(field.id);
+                    errorElement.textContent = translations[currentLang].validationErrors.floor;
+                    errorElement.style.display = 'block';
+                    console.log(`${field.id} validation failed: invalid floor`, field.value);
+                } else if (field.id === 'move-datetime') {
+                    const selectedDate = new Date(field.value);
+                    if (isNaN(selectedDate.getTime())) {
+                        errors.push(field.id);
+                        errorElement.textContent = translations[currentLang].validationErrors.datetime;
+                        errorElement.style.display = 'block';
+                        console.log(`${field.id} validation failed: invalid date`, field.value);
+                    } else if (bookedSlots.some(slot => new Date(slot).toISOString() === selectedDate.toISOString())) {
+                        errors.push(field.id);
+                        errorElement.textContent = translations[currentLang].validationErrors.booked;
+                        errorElement.style.display = 'block';
+                        console.log(`${field.id} validation failed: date booked`, field.value);
+                    }
+                }
+            });
+
+            if (errors.length > 0) {
+                console.log('Validation failed due to:', errors);
+            } else {
+                console.log('Validation passed');
+            }
+            return errors.length === 0;
+        }
+
+        function initializeAppointmentForm() {
+            const datetimeInput = document.getElementById('datetime');
+            if (!datetimeInput) {
+                console.error('Datetime input not found');
